@@ -3,7 +3,7 @@
 A _minimalist_ text editor that lives entirely in your browser and stores everything in the URL hash.
 
 <p align="center">
-  <img src=".github/textarea-my-screenshot.webp" alt="Screenshot of onURL.space" width="696" height="456">
+  <img src=".github/image.png" alt="Screenshot of onURL.space" width="696" height="456">
 </p>
 
 ## Features
