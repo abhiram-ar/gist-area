@@ -5,6 +5,12 @@
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.json">
 <title>QR Code | OnURL.space</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="manifest" href="assets/site.webmanifest">
+
 <style>
   * {
     margin: 0;
@@ -65,7 +71,7 @@
 <script>
   function render() {
     const hash = location.hash
-    const url = 'https://textarea.my/' + hash
+    const url = 'https://onurl.space/' + hash
     const link = document.getElementById('link')
     link.href = '/' + hash
 
