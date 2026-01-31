@@ -27,16 +27,16 @@
 
   /* Custom Persistent Scrollbar */
   ::-webkit-scrollbar {
-    width: 14px;
+    width: 0.5em;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.1);
   }
 
   ::-webkit-scrollbar-thumb {
     background-color: var(--ce-scrollbar-thumb);
-    border: 4px solid transparent;
+    border: 1px solid transparent;
     background-clip: content-box;
     border-radius: 99px;
   }
@@ -99,7 +99,7 @@
     --ce-border: #e1e4e8;
     --ce-header-bg: #f1f3f5;
     --ce-scrollbar-track: transparent;
-    --ce-scrollbar-thumb: #d0d7de;
+    --ce-scrollbar-thumb: #8b8f93;
   }
 
   html {
@@ -789,7 +789,7 @@
     border-radius: 8px;
     border: none;
     box-shadow: 0 2px 8px rgba(9, 105, 218, 0.25);
-    color: var(--text-light);
+    color: var(--text);
     cursor: pointer;
     display: grid;
     font-weight: 600;
@@ -998,6 +998,57 @@
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9em;
+  }
+
+  /* Mobile UI Adjustments */
+  @media (max-width: 768px) {
+    #toolbar {
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 60px;
+      padding: 0 20px;
+      background: var(--elevated);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--ce-border);
+      border-radius: 0;
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    .toolbar-btn,
+    #button {
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      border-radius: 8px;
+      height: 48px;
+      width: 48px;
+    }
+
+    .toolbar-btn:active,
+    #button:active {
+      background: var(--bg-hover);
+    }
+
+    #menu {
+      top: 68px;
+      right: 12px;
+    }
+
+    /* Hide the moon/sun theme toggle text if any, keep icon centered */
+    .toolbar-btn svg,
+    #button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    article,
+    #placeholder {
+      padding-top: 88px;
+    }
   }
 </style>
 <article contenteditable="plaintext-only" spellcheck autofocus></article>
@@ -1473,9 +1524,9 @@
             frag.appendChild(a)
           } else if (m.name === 'md-codeblock' && /^```\w+/i.test(raw)) {
             const placeholder = document.createElement('div')
-            placeholder.className = 'code-editor-placeholder'
+            placeholder.className = 'code-editor-placeholder code-editor'
             placeholder.dataset.raw = raw
-            placeholder.style.cssText = 'min-height: 80px; background: #f6f8fa; border-radius: 8px; margin: 12px 0;'
+            placeholder.style.cssText = 'min-height: 80px;'
             frag.appendChild(placeholder)
             // Track start position for cursor focus
             codeBlockPlaceholders.push({ placeholder, raw, startPos: i, endPos: i + raw.length })
