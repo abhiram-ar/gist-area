@@ -111,37 +111,435 @@
     cursor: pointer;
   }
 
-  #button {
-    -webkit-tap-highlight-color: transparent;
-    background-color: #0569fa;
-    border-radius: 50%;
+  /* Code Editor syntax highlighting (extensible for all languages) */
+  .ce-keyword {
+    color: #cf222e;
+    @media (prefers-color-scheme: dark) {
+      color: #ff7b72;
+    }
+  }
+
+  .ce-string {
+    color: #0a3069;
+    @media (prefers-color-scheme: dark) {
+      color: #a5d6ff;
+    }
+  }
+
+  .ce-number {
+    color: #0550ae;
+    @media (prefers-color-scheme: dark) {
+      color: #79c0ff;
+    }
+  }
+
+  .ce-comment {
+    color: #6e7781;
+    @media (prefers-color-scheme: dark) {
+      color: #8b949e;
+    }
+  }
+
+  .ce-function {
+    color: #8250df;
+    @media (prefers-color-scheme: dark) {
+      color: #d2a8ff;
+    }
+  }
+
+  .ce-operator {
+    color: #cf222e;
+    @media (prefers-color-scheme: dark) {
+      color: #ff7b72;
+    }
+  }
+
+  .ce-builtin {
+    color: #953800;
+    @media (prefers-color-scheme: dark) {
+      color: #ffa657;
+    }
+  }
+
+  .ce-regex {
+    color: #116329;
+    @media (prefers-color-scheme: dark) {
+      color: #7ee787;
+    }
+  }
+
+  .ce-tag {
+    color: #116329;
+    @media (prefers-color-scheme: dark) {
+      color: #7ee787;
+    }
+  }
+
+  .ce-selector {
+    color: #8250df;
+    @media (prefers-color-scheme: dark) {
+      color: #d2a8ff;
+    }
+  }
+
+  .ce-variable {
+    color: #953800;
+    @media (prefers-color-scheme: dark) {
+      color: #ffa657;
+    }
+  }
+
+  .ce-heading {
+    font-weight: bold;
+    color: #0550ae;
+    @media (prefers-color-scheme: dark) {
+      color: #79c0ff;
+    }
+  }
+
+  .ce-code {
+    background: rgba(175, 184, 193, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+
+  .ce-bold {
+    font-weight: bold;
+  }
+
+  .ce-italic {
+    font-style: italic;
+  }
+
+  .ce-link {
+    color: #0969da;
+    @media (prefers-color-scheme: dark) {
+      color: #58a6ff;
+    }
+  }
+
+  /* Interactive Code Editor */
+  .code-editor {
+    display: block;
+    margin: 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e1e4e8;
+    background: #f6f8fa;
+    @media (prefers-color-scheme: dark) {
+      border-color: #30363d;
+      background: #161b22;
+    }
+  }
+
+  .code-editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #f1f3f5;
+    border-bottom: 1px solid #e1e4e8;
+    @media (prefers-color-scheme: dark) {
+      background: #21262d;
+      border-color: #30363d;
+    }
+  }
+
+  .code-editor-lang {
+    font-size: 12px;
+    font-weight: 600;
+    color: #57606a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    @media (prefers-color-scheme: dark) {
+      color: #8b949e;
+    }
+  }
+
+  .code-editor-lang-select {
+    font-size: 12px;
+    font-weight: 600;
+    color: #57606a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    outline: none;
+    font-family: system-ui;
+    transition: all 0.15s ease;
+    @media (prefers-color-scheme: dark) {
+      color: #8b949e;
+    }
+  }
+
+  .code-editor-lang-select:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: #d0d7de;
+    @media (prefers-color-scheme: dark) {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #484f58;
+    }
+  }
+
+  .code-editor-lang-select:focus {
+    border-color: var(--outline);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+  }
+
+  .code-editor-lang-select option {
+    text-transform: none;
+    background: var(--elevated);
+    color: var(--text);
+  }
+
+  .code-editor-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .code-editor-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
     border: none;
-    bottom: 15px;
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: system-ui;
+  }
+
+  .code-editor-btn.copy {
+    background: #e1e4e8;
+    color: #24292f;
+    @media (prefers-color-scheme: dark) {
+      background: #30363d;
+      color: #c9d1d9;
+    }
+  }
+
+  .code-editor-btn.copy:hover {
+    background: #d0d7de;
+    @media (prefers-color-scheme: dark) {
+      background: #484f58;
+    }
+  }
+
+  .code-editor-btn.run {
+    background: #238636;
     color: #fff;
+  }
+
+  .code-editor-btn.run:hover {
+    background: #2ea043;
+  }
+
+  .code-editor-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .code-editor-body {
+    position: relative;
+  }
+
+  .code-editor-textarea {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 2;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    color: transparent;
+    caret-color: var(--text);
+    white-space: pre;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .code-editor-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 2;
+    white-space: pre;
+    pointer-events: none;
+    overflow: auto;
+    z-index: 0;
+  }
+
+  .code-editor-output {
+    border-top: 1px solid #e1e4e8;
+    background: #1b1f23;
+    color: #c9d1d9;
+    @media (prefers-color-scheme: dark) {
+      border-color: #30363d;
+    }
+  }
+
+  .code-editor-output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #8b949e;
+    background: #161b22;
+  }
+
+  .code-editor-output-clear {
+    background: none;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .code-editor-output-clear:hover {
+    background: #30363d;
+    color: #c9d1d9;
+  }
+
+  .code-editor-output-content {
+    padding: 10px 12px;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .code-editor-output-content:empty::before {
+    content: 'No output yet. Click Run to execute.';
+    color: #6e7681;
+    font-style: italic;
+  }
+
+  .code-editor-output-content .log { color: #c9d1d9; }
+  .code-editor-output-content .error { color: #f85149; }
+  .code-editor-output-content .warn { color: #d29922; }
+  .code-editor-output-content .info { color: #58a6ff; }
+
+  #toolbar {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .toolbar-btn {
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--elevated);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    color: var(--text);
     cursor: pointer;
     display: grid;
-    font-weight: 600;
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
     outline: none;
     overflow: hidden;
     padding: 0;
     place-items: center;
-    position: fixed;
-    right: 15px;
     text-decoration: none;
     touch-action: manipulation;
-    transition: background-color .3s ease-out;
+    transition: background-color .2s ease-out, box-shadow .2s ease-out;
     user-select: none;
-    z-index: 1;
+  }
+
+  @media (hover) {
+    .toolbar-btn:hover {
+      background-color: rgba(5, 105, 250, 0.1);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    }
+    @media (prefers-color-scheme: dark) {
+      .toolbar-btn:hover {
+        background-color: #353535;
+      }
+    }
+  }
+
+  .toolbar-btn:focus-visible {
+    outline: 2px solid var(--outline);
+    outline-offset: 2px;
+  }
+
+  .toolbar-btn.active {
+    background-color: #0569fa;
+    color: #fff;
+  }
+
+  @media (hover) {
+    .toolbar-btn.active:hover {
+      background-color: #3c86f3;
+    }
+  }
+
+  .toolbar-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.2s ease;
+  }
+
+  #button {
+    -webkit-tap-highlight-color: transparent;
+    background-color: #0569fa;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    font-weight: 600;
+    width: 38px;
+    height: 38px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    place-items: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: background-color .2s ease-out;
+    user-select: none;
   }
 
   @media (hover) {
     #button:hover {
       color: #fff;
       background-color: #3c86f3;
-      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -150,37 +548,28 @@
     outline-offset: 2px;
   }
 
-  span.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
+  #button svg {
+    width: 20px;
+    height: 20px;
   }
 
   #menu {
     visibility: hidden;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.95) translateY(-10px);
+    transform-origin: top right;
     transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     opacity: 0;
     display: flex;
     flex-direction: column;
-    width: 220px;
+    width: 200px;
     position: fixed;
-    right: 16px;
-    bottom: 77px;
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10), 0 15px 12px rgba(0, 0, 0, 0.05);
+    right: 12px;
+    top: 56px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.08);
     background: var(--elevated);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    z-index: 2;
+    z-index: 3;
   }
 
   #menu.visible {
@@ -223,37 +612,60 @@
     border-top-right-radius: 10px;
   }
 
-  #menu .item:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  #menu .item svg {
+    transition: all 0.2s ease;
   }
 
   #notification {
     visibility: hidden;
-    transform: translateY(-30px);
+    transform: translateY(20px);
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     opacity: 0;
 
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 
     position: fixed;
-    right: 17px;
-    top: 17px;
+    right: 16px;
+    bottom: 16px;
 
-    background: #5ad227;
-    color: #fff;
-    border-radius: 30px;
-    font: 18px / 1 system-ui;
-    font-weight: 600;
-    z-index: 2;
-    padding: 10px 20px;
+    background: var(--elevated);
+    color: var(--text);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font: 14px / 1.4 system-ui;
+    font-weight: 500;
+    z-index: 10;
+    padding: 12px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    @media (prefers-color-scheme: dark) {
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
   }
 
   #notification.visible {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
+  }
+
+  #notification .toast-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  #notification.success {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #bbf7d0;
+    @media (prefers-color-scheme: dark) {
+      background: #14532d;
+      color: #bbf7d0;
+      border-color: #166534;
+    }
   }
 
   @media print {
@@ -263,22 +675,32 @@
   }
 </style>
 <article contenteditable="plaintext-only" spellcheck autofocus></article>
-<button id="button" class="noprint">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-       stroke="currentColor"
-       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="1"></circle>
-    <circle cx="12" cy="5" r="1"></circle>
-    <circle cx="12" cy="19" r="1"></circle>
-  </svg>
-</button>
-<div id="menu" class="noprint" role="menu">
-  <a class="item" href="#new" target="_blank" role="menuitem">
-    <svg aria-hidden="true" focusable="false" width="22" height="22">
+<div id="toolbar" class="noprint">
+  <a class="toolbar-btn" href="#new" target="_blank" title="New document">
+    <svg aria-hidden="true" focusable="false">
       <use xlink:href="#icon-plus"></use>
     </svg>
-    New document
   </a>
+  <button class="toolbar-btn" id="copy-url" title="Copy URL">
+    <svg aria-hidden="true" focusable="false">
+      <use xlink:href="#icon-copy"></use>
+    </svg>
+  </button>
+  <button class="toolbar-btn" id="toggle-raw" title="Toggle raw/rendered view">
+    <svg aria-hidden="true" focusable="false">
+      <use xlink:href="#icon-code"></use>
+    </svg>
+  </button>
+  <button id="button" title="More options">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="1"></circle>
+      <circle cx="12" cy="5" r="1"></circle>
+      <circle cx="12" cy="19" r="1"></circle>
+    </svg>
+  </button>
+</div>
+<div id="menu" class="noprint" role="menu">
   <a class="item" id="qr" href="/qr" role="menuitem">
     <svg aria-hidden="true" focusable="false" width="22" height="22">
       <use xlink:href="#icon-qrcode"></use>
@@ -293,13 +715,13 @@
   </a>
   <a class="item" id="save-as-html" href="" role="menuitem">
     <svg aria-hidden="true" focusable="false" width="22" height="22">
-      <use xlink:href="#icon-empty"></use>
+      <use xlink:href="#icon-download"></use>
     </svg>
     Save as HTML
   </a>
   <a class="item" id="save-as-text" href="" role="menuitem">
     <svg aria-hidden="true" focusable="false" width="22" height="22">
-      <use xlink:href="#icon-empty"></use>
+      <use xlink:href="#icon-download"></use>
     </svg>
     Save as TEXT
   </a>
@@ -312,6 +734,8 @@
 </div>
 <div id="notification" class="noprint"></div>
 <script>
+  let isRawMode = false
+  
   initUI()
 
   const article = document.querySelector('article')
@@ -369,12 +793,28 @@
 
   async function get() {
     const style = article.getAttribute('style')
-    const content = article.textContent + (style !== null ? '\x00' + style : '')
+    const content = getArticleContent() + (style !== null ? '\x00' + style : '')
     return '#' + await compress(content)
   }
 
+  function getArticleContent() {
+    let content = ''
+    const walk = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        content += node.textContent
+      } else if (node.classList?.contains('code-editor')) {
+        content += node.dataset.raw || ''
+      } else if (node.childNodes) {
+        node.childNodes.forEach(walk)
+      }
+    }
+    walk(article)
+    return content
+  }
+
   function updateTitle() {
-    const match = article.textContent.match(/^\n*#(.+)\n/)
+    const content = getArticleContent()
+    const match = content.match(/^\n*#(.+)\n/)
     document.title = match?.[1] ?? 'Textarea'
   }
 
@@ -443,7 +883,7 @@
 
   async function downloadTXT() {
     updateTitle()
-    const text = article.textContent
+    const text = getArticleContent()
 
     if ('showSaveFilePicker' in window) {
       try {
@@ -472,9 +912,70 @@
     URL.revokeObjectURL(url)
   }
 
-  function parseMarkdown(element) {
-    const input = element.textContent
+  let codeEditorLoaded = false
+  let codeEditorLoadPromise = null
+
+  function loadCodeEditor() {
+    if (codeEditorLoaded) return Promise.resolve()
+    if (codeEditorLoadPromise) return codeEditorLoadPromise
+
+    codeEditorLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = 'code-editor.js'
+      script.onload = () => {
+        codeEditorLoaded = true
+        resolve()
+      }
+      script.onerror = reject
+      document.head.appendChild(script)
+    })
+    return codeEditorLoadPromise
+  }
+
+  function hasCodeBlocks(content) {
+    return /```\w*\n[\s\S]*?\n```/.test(content)
+  }
+
+  async function createCodeEditor(rawCode) {
+    await loadCodeEditor()
+    return window.CodeEditor.create(rawCode, save)
+  }
+
+  function parseMarkdown() {
+    // In raw mode, skip all markdown rendering
+    if (isRawMode) {
+      return
+    }
+    
+    const input = getArticleContent()
     const frag = document.createDocumentFragment()
+    const codeBlockPlaceholders = [] // Track code blocks for async loading
+
+    let cursorPos = null
+    try {
+      const sel = window.getSelection()
+      if (sel.rangeCount > 0) {
+        let offset = 0
+        const walk = (node) => {
+          if (node === sel.anchorNode) {
+            offset += sel.anchorOffset
+            return true
+          }
+          if (node.nodeType === Node.TEXT_NODE) {
+            offset += node.textContent.length
+          } else if (node.classList?.contains('code-editor') || node.classList?.contains('code-editor-placeholder')) {
+            offset += (node.dataset.raw || '').length
+          } else if (node.childNodes) {
+            for (const child of node.childNodes) {
+              if (walk(child)) return true
+            }
+          }
+          return false
+        }
+        walk(article)
+        cursorPos = offset
+      }
+    } catch (e) {}
 
     const matchers = [
       {name: 'md-codeblock', re: /```[^\n]*\n[\s\S]*?\n```/y},
@@ -512,6 +1013,14 @@
             a.target = '_blank'
             a.rel = 'noopener noreferrer'
             frag.appendChild(a)
+          } else if (m.name === 'md-codeblock' && /^```\w+/i.test(raw)) {
+            const placeholder = document.createElement('div')
+            placeholder.className = 'code-editor-placeholder'
+            placeholder.dataset.raw = raw
+            placeholder.style.cssText = 'min-height: 80px; background: #f6f8fa; border-radius: 8px; margin: 12px 0;'
+            frag.appendChild(placeholder)
+            // Track start position for cursor focus
+            codeBlockPlaceholders.push({ placeholder, raw, startPos: i, endPos: i + raw.length })
           } else {
             const span = document.createElement('span')
             span.className = m.name
@@ -545,50 +1054,168 @@
     article.textContent = ''
     article.appendChild(frag)
     article.normalize()
+
+    const lastChild = article.lastChild
+    if (lastChild?.classList?.contains('code-editor-placeholder') || lastChild?.classList?.contains('code-editor')) {
+      article.appendChild(document.createTextNode('\n'))
+    }
+
+    if (codeBlockPlaceholders.length > 0) {
+      loadCodeEditor().then(() => {
+        let focusedEditor = null
+        codeBlockPlaceholders.forEach(({ placeholder, raw, startPos, endPos }) => {
+          if (placeholder.parentNode) {
+            const editor = window.CodeEditor.create(raw, save)
+            placeholder.parentNode.replaceChild(editor, placeholder)
+            
+            // Check if cursor was inside this code block
+            if (cursorPos !== null && cursorPos >= startPos && cursorPos <= endPos) {
+              focusedEditor = editor
+              const textarea = editor.querySelector('.code-editor-textarea')
+              if (textarea) {
+                const firstNewline = raw.indexOf('\n')
+                const codeStart = firstNewline + 1
+                const closingFence = raw.lastIndexOf('\n```')
+                const codeEnd = closingFence > 0 ? closingFence : raw.length - 3
+                
+                // Calculate position within the code content (not the raw markdown)
+                const relativePos = cursorPos - startPos
+                
+                // Adjust position to be within the code body
+                let posInCode = 0
+                if (relativePos <= codeStart) {
+                  // Cursor was in the opening fence line, place at start of code
+                  posInCode = 0
+                } else if (relativePos >= codeEnd) {
+                  // Cursor was in or after closing fence, place at end of code
+                  posInCode = textarea.value.length
+                } else {
+                  // Cursor was in the code body
+                  posInCode = Math.min(relativePos - codeStart, textarea.value.length)
+                }
+                
+                // Focus and set cursor position
+                setTimeout(() => {
+                  textarea.focus()
+                  textarea.setSelectionRange(posInCode, posInCode)
+                }, 10)
+              }
+            }
+          }
+        })
+      }).catch(err => {
+        console.error('Failed to load code editor:', err)
+        codeBlockPlaceholders.forEach(({ placeholder, raw }) => {
+          if (placeholder.parentNode) {
+            const span = document.createElement('span')
+            span.className = 'md-codeblock'
+            span.textContent = raw
+            placeholder.parentNode.replaceChild(span, placeholder)
+          }
+        })
+      })
+    }
   }
 
   function initUI() {
     const menu = document.querySelector('#menu')
     const button = document.querySelector('#button')
+    const copyUrlBtn = document.querySelector('#copy-url')
+    const toggleRawBtn = document.querySelector('#toggle-raw')
     const qr = document.querySelector('#qr')
     const shareLink = document.querySelector('#share-link')
     const saveAsHTML = document.querySelector('#save-as-html')
     const saveAsText = document.querySelector('#save-as-text')
 
-    button.addEventListener('click', event => {
-      if (event.clientX || event.targetTouches) ripple(event)
-      menu.classList.toggle('visible')
-      qr.setAttribute('href', '/qr' + location.hash)
-      shareLink.setAttribute('href', location.href)
-    })
-
     function hideMenu() {
       menu.classList.remove('visible')
     }
 
-    function notify(message) {
+    function notify(message, icon = null, type = '') {
       const notification = document.querySelector('#notification')
-      notification.classList.add('visible')
-      notification.textContent = message
-      setTimeout(() => notification.classList.remove('visible'), 2e3)
+      notification.className = type ? `visible ${type}` : 'visible'
+      notification.innerHTML = (icon ? `<span class="toast-icon">${icon}</span>` : '') + message
+      clearTimeout(notification._timer)
+      notification._timer = setTimeout(() => {
+        notification.classList.remove('visible')
+      }, 2000)
     }
 
-    document.body.addEventListener('click', event => {
-      let t = event.target
-      if (t.closest('#menu')) return
-      if (t.closest('#button')) return
-      if (t.closest('.ripple')) return
-      menu.classList.remove('visible')
-    })
+    const toastIcons = {
+      copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+      raw: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8l-4 4l4 4"/><path d="M17 8l4 4l-4 4"/><path d="M14 4l-4 16"/></svg>',
+      rendered: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>',
+    }
 
-    shareLink.addEventListener('click', event => {
-      event.preventDefault()
+    function copyURL() {
       if (!navigator.clipboard) {
         alert('Your browser does not support clipboard API')
         return
       }
       navigator.clipboard.writeText(location.href)
-      notify('Link copied')
+      notify('Link copied to clipboard', toastIcons.copy, 'success')
+    }
+
+    function toggleRawMode() {
+      isRawMode = !isRawMode
+      toggleRawBtn.classList.toggle('active', isRawMode)
+      
+      if (isRawMode) {
+        // Switch to raw mode - show plain text
+        const content = getArticleContent()
+        article.textContent = content
+        notify('Raw mode: Markdown disabled    ', toastIcons.raw)
+      } else {
+        // Switch to rendered mode - parse markdown
+        parseMarkdown()
+        notify('Rendered mode: Markdown enabled', toastIcons.rendered)
+      }
+    }
+
+    toggleRawBtn.addEventListener('click', toggleRawMode)
+
+    button.addEventListener('click', event => {
+      menu.classList.toggle('visible')
+      qr.setAttribute('href', '/qr' + location.hash)
+      shareLink.setAttribute('href', location.href)
+    })
+
+    copyUrlBtn.addEventListener('click', event => {
+      // Animate the icon to checkmark
+      const icon = copyUrlBtn.querySelector('use')
+      const originalHref = icon.getAttribute('xlink:href')
+      icon.setAttribute('xlink:href', '#icon-check')
+      
+      // Revert back after 2 seconds
+      setTimeout(() => {
+        icon.setAttribute('xlink:href', originalHref)
+      }, 2000)
+      
+      copyURL()
+    })
+
+    document.body.addEventListener('click', event => {
+      let t = event.target
+      if (t.closest('#menu')) return
+      if (t.closest('#button')) return
+      if (t.closest('#toolbar')) return
+      menu.classList.remove('visible')
+    })
+
+    shareLink.addEventListener('click', event => {
+      event.preventDefault()
+      
+      // Animate the icon to checkmark
+      const icon = shareLink.querySelector('use')
+      const originalHref = icon.getAttribute('xlink:href')
+      icon.setAttribute('xlink:href', '#icon-check')
+      
+      // Revert back after 2 seconds
+      setTimeout(() => {
+        icon.setAttribute('xlink:href', originalHref)
+      }, 2000)
+      
+      copyURL()
       hideMenu()
     })
     saveAsHTML.addEventListener('click', event => {
@@ -603,26 +1230,24 @@
     })
   }
 
-  function ripple(event) {
-    const button = event.currentTarget
-    const circle = document.createElement('span')
-    const diameter = Math.max(button.clientWidth, button.clientHeight)
-    const radius = diameter / 2
-    circle.style.width = circle.style.height = `${diameter}px`
-    circle.style.left = `${(event.clientX || event.targetTouches[0].pageX) - button.offsetLeft - radius}px`
-    circle.style.top = `${(event.clientY || event.targetTouches[0].pageY) - button.offsetTop - radius}px`
-    circle.classList.add('ripple')
-    const ripple = button.getElementsByClassName('ripple')[0]
-    if (ripple) ripple.remove()
-    button.appendChild(circle)
-  }
-
   function Editor(element, highlight) {
     const listeners = []
     const history = []
     let at = -1, prev
 
+    const isInsideCodeEditor = () => {
+      const sel = window.getSelection()
+      if (!sel.anchorNode) return false
+      let node = sel.anchorNode
+      while (node && node !== element) {
+        if (node.classList?.contains('code-editor')) return true
+        node = node.parentNode
+      }
+      return false
+    }
+
     const debounceHighlight = debounce(30, () => {
+      if (isInsideCodeEditor()) return
       const pos = save()
       highlight(element)
       restore(pos)
@@ -720,6 +1345,11 @@
           if (pos.dir !== '->') pos.start += el.nodeValue.length
           if (pos.dir !== '<-') pos.end += el.nodeValue.length
         }
+        if (el.classList?.contains('code-editor') || el.classList?.contains('code-editor-placeholder')) {
+          const rawLen = (el.dataset.raw || '').length
+          if (pos.dir !== '->') pos.start += rawLen
+          if (pos.dir !== '<-') pos.end += rawLen
+        }
       })
 
       element.normalize()
@@ -744,15 +1374,21 @@
       let current = 0
 
       visit(element, el => {
+        if (el.classList?.contains('code-editor') || el.classList?.contains('code-editor-placeholder')) {
+          const len = (el.dataset.raw || '').length
+          current += len
+          return
+        }
+
         if (el.nodeType !== Node.TEXT_NODE) return
 
         const len = (el.nodeValue || '').length
-        if (current + len > pos.start) {
+        if (current + len >= pos.start) {
           if (!startNode) {
             startNode = el
             startOffset = pos.start - current
           }
-          if (current + len > pos.end) {
+          if (current + len >= pos.end) {
             endNode = el
             endOffset = pos.end - current
             return 'stop'
@@ -778,14 +1414,14 @@
         const startEl = uneditable(startNode)
         if (startEl) {
           const node = document.createTextNode('')
-          startEl.parentNode?.insertBefore(node, startEl)
+          startEl.parentNode?.insertBefore(node, startEl.nextSibling)
           startNode = node
           startOffset = 0
         }
         const endEl = uneditable(endNode)
         if (endEl) {
           const node = document.createTextNode('')
-          endEl.parentNode?.insertBefore(node, endEl)
+          endEl.parentNode?.insertBefore(node, endEl.nextSibling)
           endNode = node
           endOffset = 0
         }
@@ -855,7 +1491,7 @@
       while (el) {
         if (visitor(el) === 'stop') break
         if (el.nextSibling) queue.push(el.nextSibling)
-        if (el.firstChild) queue.push(el.firstChild)
+        if (el.firstChild && !el.classList?.contains('code-editor') && !el.classList?.contains('code-editor-placeholder')) queue.push(el.firstChild)
         el = queue.pop()
       }
     }
@@ -932,6 +1568,30 @@
     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
     <path
       d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/>
+  </symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"/>
+    <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"/>
+  </symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/>
+    <path d="M7 11l5 5l5 -5"/>
+    <path d="M12 4l0 12"/>
+  </symbol>
+  <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M7 8l-4 4l4 4"/>
+    <path d="M17 8l4 4l-4 4"/>
+    <path d="M14 4l-4 16"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
   </symbol>
   <symbol id="icon-empty" viewBox="0 0 24 24"></symbol>
 </svg>
