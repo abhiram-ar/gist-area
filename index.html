@@ -1045,9 +1045,21 @@
       height: 24px;
     }
 
-    article,
-    #placeholder {
+    article {
       padding-top: 88px;
+    }
+
+    #placeholder {
+      padding: 88px 20px 32px 20px;
+    }
+
+    #placeholder h1 {
+      font-size: 1.75em;
+    }
+
+    #placeholder h2 {
+      font-size: 1.2em;
+      margin-top: 1.2em;
     }
   }
 </style>
@@ -1057,17 +1069,62 @@
   <p>A minimalist text editor that lives entirely in your browser and stores everything in the URL.</p>
   <h2>Features</h2>
   <ul>
-    <li>&gt;&lt; <strong>Compression</strong> - Your text gets compressed and stored in the URL</li>
-    <li>&lt;-&gt; <strong>Easy Sharing</strong> - Share your notes by copying a URL or QR code</li>
-    <li>{..} <strong>Code</strong> - Code blocks with syntax highlighting & code execution</li>
-    <li>^_^ <strong>Continue where you left off</strong> - Your text gets saved automatically</li>
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+      <div style="flex-shrink: 0; width: 1.6em;"> &gt;&lt; </div>
+      <div>
+        <strong>Compression</strong> -
+        Your text gets compressed and stored in the URL
+      </div>
+    </li>
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+
+      <div style="flex-shrink: 0; width: 1.6em;">
+        &lt;-&gt;
+      </div>
+      <div>
+        <strong>Easy Sharing</strong> - Share your
+        notes by copying a URL or QR code
+      </div>
+    </li>
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+      <div style="flex-shrink: 0; width: 1.6em;">
+        {..}
+      </div>
+      <div>
+        <strong>Code</strong> - Code
+        blocks with syntax
+        highlighting & code execution
+      </div>
+    </li>
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+      <div style="flex-shrink: 0; width: 1.6em;">
+        ^_^
+      </div>
+      <div>
+        <strong>Continue where you
+          left off</strong> - Your
+        text gets saved automatically
+      </div>
+    </li>
   </ul>
 
   <h2>Pro tips</h2>
   <ul>
-    <li>( ! ) <strong>Custom Title</strong> - Start with <code># Title</code> to set the page title</li>
-    <li>
-      &lt;/&gt; <strong>Raw view</strong> - Switch to raw view to see the markdown source and edit it directly
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+      <div style="flex-shrink: 0; width: 1.6em;">
+        ( ! )
+      </div>
+      <div>
+        <strong>Custom Title</strong> - Start with <code># Title</code> to set the page title
+      </div>
+    </li>
+    <li style="display: flex; justify-content:start; align-items: start ;gap: 0.5em;">
+      <div style="flex-shrink: 0; width: 1.6em;">
+        &lt;/&gt;
+      </div>
+      <div>
+        <strong>Raw view</strong> - Switch to raw view to see the markdown source and edit it directly
+      </div>
     </li>
   </ul>
 
