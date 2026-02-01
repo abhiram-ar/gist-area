@@ -285,12 +285,10 @@
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
     }
 
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 
@@ -1073,7 +1071,7 @@
     }
   }
 </style>
-<article contenteditable="plaintext-only" spellcheck autofocus></article>
+<article contenteditable="plaintext-only" spellcheck></article>
 <div id="placeholder">
   <h1>Welcome to space onURL <span style="font-weight: 100;"> (⌐■_■) </span></h1>
   <p>A minimalist text editor that lives entirely in your browser and stores everything in the URL.</p>
@@ -1324,7 +1322,13 @@
   article.addEventListener('click', event => {
     if (event.target.tagName === 'A') window.open(event.target.getAttribute('href'), '_blank')
   })
-  addEventListener('DOMContentLoaded', load)
+  addEventListener('DOMContentLoaded', () => {
+    // Immediate placeholder check to prevent FOUC
+    if (!location.hash && !localStorage.getItem('hash')) {
+      placeholder.classList.add('visible')
+    }
+    load()
+  })
   addEventListener('hashchange', load)
   addEventListener('load', () => new MutationObserver(save).observe(article, { attributeFilter: ['style'] }))
   addEventListener('keydown', e => {
@@ -1345,6 +1349,10 @@
       else {
         await set(localStorage.getItem('hash') ?? '')
         if (article.textContent) history.replaceState({}, '', await get())
+        else if (!article.textContent) {
+          // Only focus for new documents to avoid scroll jumping on existing ones
+          article.focus({ preventScroll: true })
+        }
       }
     } catch (e) {
       article.textContent = ''
