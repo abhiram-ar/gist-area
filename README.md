@@ -1,14 +1,10 @@
-<div align="center">
-
 # [onURL.space](https://onurl.space)
 
-**A minimalist text editor that lives entirely in your browser and stores everything in the URL hash**
+A _minimalist_ text editor that lives entirely in your browser and stores everything in the URL hash
 
 
 
 <img src=".github/image.png" alt="Screenshot of onURL.space" width="100%"/>
-
-</div>
 
 
 > onURL.space is an extended fork of [textarea](https://github.com/antonmedv/textarea) by [Anton Medvedev]. While the original project stays lean and minimal by design, this fork layers on extra features and a friendlier UI/UX to make powerful, shareable text editing feel effortless for everyone.
