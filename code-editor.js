@@ -331,7 +331,7 @@ function stripTypeAnnotations(code) {
 }
 
 // Session-based user consent for code execution
-let userAcknowledgedCodeExecution = true
+let userAcknowledgedCodeExecution = false
 try {
   userAcknowledgedCodeExecution = sessionStorage.getItem('codeExecutionAcknowledged') === 'true'
 } catch (e) {
