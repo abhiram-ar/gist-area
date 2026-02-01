@@ -13,7 +13,7 @@
   content="A minimalist text editor that stores content in the URL. No server, no database - your notes live entirely in the browser and URL.">
 <meta name="author" content="onURL.space">
 
-<title>Space onURL</title>
+<title>onURL space</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/">
@@ -713,6 +713,201 @@
 
   .code-editor-output-content .info {
     color: #58a6ff;
+  }
+
+  /* Code Execution Dialog */
+  .ce-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.25em);
+    -webkit-backdrop-filter: blur(0.25em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .ce-dialog-overlay.visible {
+    opacity: 1;
+  }
+
+  .ce-dialog {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 380px;
+    width: calc(100% - 32px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  html[data-theme="dark"] .ce-dialog {
+    background: #1c2128;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .ce-dialog {
+      background: #1c2128;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  html[data-theme="light"] .ce-dialog {
+    background: #ffffff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .ce-dialog-overlay.visible .ce-dialog {
+    transform: scale(1) translateY(0);
+  }
+
+  .ce-dialog-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ce-dialog-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text);
+    opacity: 0.7;
+  }
+
+  html[data-theme="dark"] .ce-dialog-icon {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .ce-dialog-icon {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  html[data-theme="light"] .ce-dialog-icon {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .ce-dialog-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .ce-dialog-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    opacity: 0.75;
+    margin: 0 0 20px;
+  }
+
+  .ce-dialog-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .ce-dialog-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+  }
+
+  .ce-dialog-checkbox:hover {
+    opacity: 0.9;
+  }
+
+  .ce-dialog-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ce-dialog-btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: all 0.15s ease;
+  }
+
+  .ce-dialog-btn.cancel {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text);
+  }
+
+  .ce-dialog-btn.cancel:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  html[data-theme="dark"] .ce-dialog-btn.cancel {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  html[data-theme="dark"] .ce-dialog-btn.cancel:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .ce-dialog-btn.cancel {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .ce-dialog-btn.cancel:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  html[data-theme="light"] .ce-dialog-btn.cancel {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  html[data-theme="light"] .ce-dialog-btn.cancel:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .ce-dialog-btn.confirm {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+  }
+
+  .ce-dialog-btn.confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+  }
+
+  .ce-dialog-btn.confirm:active {
+    transform: translateY(0);
+  }
+
+  .ce-dialog-btn:focus-visible {
+    outline: 2px solid var(--outline);
+    outline-offset: 2px;
   }
 
   #toolbar {
