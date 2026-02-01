@@ -1,25 +1,59 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+
+<!-- SEO Meta Tags -->
+<title>onURL.space - Minimalist Text Editor in Your Browser</title>
+<meta name="description"
+  content="A minimalist text editor that stores content in the URL. No server, no database - your notes live entirely in the browser. Share instantly via URL or QR code.">
+<meta name="keywords" content="text editor, online notepad, URL storage, browser notes, code editor, markdown editor, share notes, QR code, no signup, privacy">
+<meta name="author" content="onURL.space">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://onurl.space/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onurl.space/">
+<meta property="og:title" content="onURL.space - Minimalist Text Editor in Your Browser">
+<meta property="og:description" content="A minimalist text editor that stores content in the URL. No server, no database - share notes instantly via URL or QR code.">
+<meta property="og:image" content="https://onurl.space/assets/android-chrome-512x512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:site_name" content="onURL.space">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://onurl.space/">
+<meta name="twitter:title" content="onURL.space - Minimalist Text Editor in Your Browser">
+<meta name="twitter:description" content="A minimalist text editor that stores content in the URL. No server, no database - share notes instantly via URL or QR code.">
+<meta name="twitter:image" content="https://onurl.space/assets/android-chrome-512x512.png">
+
+<!-- Additional SEO -->
+<meta name="application-name" content="onURL.space">
+<meta name="apple-mobile-web-app-title" content="onURL.space">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
 
 <!-- Security meta tags -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Content-Security-Policy"
   content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="description"
-  content="A minimalist text editor that stores content in the URL. No server, no database - your notes live entirely in the browser and URL.">
-<meta name="author" content="onURL.space">
 
-<title>onURL space</title>
-
+<!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 <link rel="manifest" href="assets/site.webmanifest">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -27,6 +61,34 @@
   rel="stylesheet">
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "onURL.space",
+  "url": "https://onurl.space",
+  "description": "A minimalist text editor that stores content in the URL. No server, no database - your notes live entirely in the browser.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "URL-based storage",
+    "No account required",
+    "Syntax highlighting",
+    "Code execution",
+    "QR code sharing",
+    "Markdown support",
+    "Works offline"
+  ]
+}
+</script>
 
 <style>
   * {
@@ -1266,6 +1328,8 @@
     }
   }
 </style>
+</head>
+<body>
 <article contenteditable="plaintext-only" spellcheck></article>
 <div id="placeholder">
   <h1>Welcome to onURL space <span style="font-weight: 100;"> (⌐■_■) </span></h1>
@@ -2392,3 +2456,5 @@
   </symbol>
   <symbol id="icon-empty" viewBox="0 0 24 24"></symbol>
 </svg>
+</body>
+</html>
