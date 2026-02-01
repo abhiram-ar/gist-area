@@ -270,7 +270,7 @@ function escapeHtml(s) {
 // Highlight code based on language
 function highlightCode(code, langAlias) {
   const config = getLanguageConfig(langAlias)
-  
+
   if (!config?.tokenPatterns) {
     return escapeHtml(code)
   }
@@ -282,11 +282,11 @@ function highlightCode(code, langAlias) {
 
   while (i < len) {
     let matched = false
-    
+
     for (const pat of tokenPatterns) {
       pat.re.lastIndex = i
       const match = pat.re.exec(code)
-      
+
       if (match && match.index === i) {
         const token = match[0]
         let className = tokenClassMap[pat.type]
@@ -303,21 +303,21 @@ function highlightCode(code, langAlias) {
           }
         }
 
-        parts.push(className 
-          ? '<span class="' + className + '">' + escapeHtml(token) + '</span>' 
+        parts.push(className
+          ? '<span class="' + className + '">' + escapeHtml(token) + '</span>'
           : escapeHtml(token))
         i += token.length
         matched = true
         break
       }
     }
-    
+
     if (!matched) {
       parts.push(escapeHtml(code[i]))
       i++
     }
   }
-  
+
   return parts.join('')
 }
 
@@ -330,8 +330,40 @@ function stripTypeAnnotations(code) {
     .replace(/^(interface|type)\s+.*$/gm, '')
 }
 
+// Session-based user consent for code execution
+let userAcknowledgedCodeExecution = true
+try {
+  userAcknowledgedCodeExecution = sessionStorage.getItem('codeExecutionAcknowledged') === 'true'
+} catch (e) {
+  // sessionStorage may not be available
+}
+
 // Execute JavaScript/TypeScript code
 function executeCode(code, langAlias, outputContent) {
+  // Show warning on first execution per session
+  if (!userAcknowledgedCodeExecution) {
+    const confirmed = confirm(
+      '⚠️ Code Execution Warning\n\n' +
+      'You are about to execute JavaScript code in your browser. ' +
+      'Only run code that you trust.\n\n' +
+      'This code runs locally in your browser and has access to browser APIs.\n\n' +
+      'Do you want to continue?'
+    )
+    if (!confirmed) {
+      const line = document.createElement('div')
+      line.className = 'info'
+      line.textContent = 'Execution cancelled by user.'
+      outputContent.appendChild(line)
+      return
+    }
+    userAcknowledgedCodeExecution = true
+    try {
+      sessionStorage.setItem('codeExecutionAcknowledged', 'true')
+    } catch (e) {
+      // sessionStorage may not be available
+    }
+  }
+
   const logs = []
   const customConsole = {
     log: (...args) => logs.push({ type: 'log', args }),
@@ -360,8 +392,8 @@ function executeCode(code, langAlias, outputContent) {
   for (const { type, args } of logs) {
     const line = document.createElement('div')
     line.className = type
-    line.textContent = args.map(arg => 
-      typeof arg === 'object' 
+    line.textContent = args.map(arg =>
+      typeof arg === 'object'
         ? ((() => { try { return JSON.stringify(arg, null, 2) } catch { return String(arg) } })())
         : String(arg)
     ).join(' ')
@@ -396,7 +428,7 @@ function createOutputArea(onClear) {
   content.className = 'code-editor-output-content'
 
   output.append(header, content)
-  
+
   return { output, content }
 }
 
@@ -466,7 +498,7 @@ function createCodeEditor(rawCode, saveCallback) {
   copyBtn.innerHTML = icons.copy + 'Copy'
 
   let runBtn = null
-  
+
   const createRunBtn = () => {
     const btn = document.createElement('button')
     btn.className = 'code-editor-btn run'
@@ -493,11 +525,11 @@ function createCodeEditor(rawCode, saveCallback) {
   const actions = document.createElement('div')
   actions.className = 'code-editor-actions'
   actions.appendChild(copyBtn)
-  
+
   if (isLanguageRunnable(langAlias)) {
     runBtn = createRunBtn()
     actions.appendChild(runBtn)
-    
+
     // Pre-create output area for runnable languages
     const outputArea = createOutputArea(() => {
       output.style.display = 'none'
